@@ -1,0 +1,63 @@
+:root,
+body {
+  margin: 0;
+  height: 100%;
+}
+a {
+  text-decoration-line: none;
+  color: white;
+}
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  transition: all 1s;
+}
+.app-card {
+  width: 450px;
+  padding: 40px 50px;
+  background-color: white;
+  border-radius: 3px;
+}
+.app-card-quote {
+  margin-bottom: 30px;
+  transition: all 1s;
+}
+.app-card-quote-word {
+  text-align: center;
+  font-size: 1.75em;
+}
+.app-card-quote-owner {
+  padding-top: 20px;
+  text-align: right;
+  font-size: 1em;
+}
+.app-card-rest,
+.app-card-media-item {
+  display: inline-block;
+  border-radius: 3px;
+  font-size: 0.9em;
+  padding: 10px 10px;
+  color: white;
+  user-select: none;
+  transition: all 1s, filter 0.3s;
+}
+.app-card-rest:hover,
+.app-card-media-item:hover {
+  cursor: pointer;
+  filter: brightness(110%);
+}
+.app-card-rest {
+  float: right;
+}
+.app-card-media {
+  display: inline-block;
+}
+.app-card-media-item {
+  padding: 10px 15px;
+}
+.author {
+  color: white;
+}

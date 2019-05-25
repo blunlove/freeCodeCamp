@@ -1,0 +1,83 @@
+:root, body {
+  margin: 0;
+  height: 100%;
+  cursor: default;
+}
+body {
+  background-color: #092b40;
+}
+a {
+  text-decoration-line: none;
+  color: white;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  color: white;
+  &.center {
+    justify-content: center;
+  }
+  &-header {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  &-search {
+    margin-bottom: 15px;
+    flex-shrink: 0;
+    height: 35px;
+  }
+  &-cards {
+    width: 850px;
+  }
+  &-footer {
+    font-size: 1.2em;
+  }
+}
+.search {
+  & > i {
+    font-size: 1.5em;
+    color: #d96f32;
+    cursor: pointer;
+  }
+  &-input {
+    position: relative;
+    input {
+      padding: 5px 10px;
+      border: #d96f32 solid 4px;
+      background-color: inherit;
+      color: white;
+      border-radius: 50px;
+      outline: none;
+    }
+    i {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      color: #d96f32;
+      cursor: pointer;
+    }
+  }
+}
+.wiki-card {
+  &-item {
+    padding: 15px 30px 5px 30px;
+    height: 110px;
+    margin-bottom: 10px;
+    color: black;
+    background-color: #e6e6e7;
+    &-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    &:hover {
+      cursor: pointer;
+      margin-left: -5px;
+      border-left: 5px solid #d86f32;
+    }
+  }
+}

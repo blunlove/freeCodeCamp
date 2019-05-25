@@ -1,0 +1,66 @@
+:root,
+body {
+  margin: 0;
+  height: 100%;
+  cursor: default;
+}
+a {
+  text-decoration-line: none;
+  color: white;
+}
+.card {
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 6px;
+  width: 120px;
+  box-shadow: 0 0.25rem 1rem rgba(48, 55, 66, 0.15);
+  transition: all 0.3s;
+}
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 0.25rem 0.5rem rgba(48, 55, 66, 0.5);
+  transform: translateY(3px);
+}
+.weather {
+  width: 1000px;
+  margin: auto;
+}
+.weather-header {
+  font-size: 1.7em;
+  margin-bottom: 20px;
+}
+.weather-today {
+  margin-bottom: 20px;
+}
+.weather-future-title {
+  font-size: 1.7em;
+  margin-bottom: 20px;
+}
+.weather-card {
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 6px;
+  width: 120px;
+  box-shadow: 0 0.25rem 1rem rgba(48, 55, 66, 0.15);
+  transition: all 0.3s;
+}
+.weather-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0.25rem 0.5rem rgba(48, 55, 66, 0.5);
+  transform: translateY(3px);
+}
+.future-card {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 6px;
+  width: 120px;
+  box-shadow: 0 0.25rem 1rem rgba(48, 55, 66, 0.15);
+  transition: all 0.3s;
+}
+.future-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0.25rem 0.5rem rgba(48, 55, 66, 0.5);
+  transform: translateY(3px);
+}

@@ -1,0 +1,47 @@
+:root, body {
+  margin: 0;
+  height: 100%;
+  cursor: default;
+}
+a {
+  text-decoration-line: none;
+  color: white;
+}
+.card {
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 6px;
+  width: 120px;
+  box-shadow: 0 0.25rem 1rem rgba(48, 55, 66, 0.15);
+  transition: all 0.3s;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0.25rem 0.5rem rgba(48, 55, 66, 0.5);
+    transform: translateY(3px);
+  }
+}
+.weather {
+  width: 1000px;
+  margin: auto;
+  &-header {
+    font-size: 1.7em;
+    margin-bottom: 20px;
+  }
+  &-today {
+    margin-bottom: 20px;
+  }
+  &-future {
+    &-title {
+      font-size: 1.7em;
+      margin-bottom: 20px;
+    }
+  }
+}
+.weather-card {
+  .card;
+}
+.future-card {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  .card;
+}

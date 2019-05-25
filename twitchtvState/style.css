@@ -1,0 +1,119 @@
+:root,
+body {
+  margin: 0;
+  height: 100%;
+  cursor: default;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.app {
+  margin-top: 10px;
+  width: 700px;
+  background-color: #ecf0e7;
+}
+.app-header {
+  position: relative;
+  padding: 5px 65px;
+  margin: 2px 0;
+  color: white;
+  font-family: 'Oswald', sans-serif;
+  background-color: #5c5457;
+  overflow: hidden;
+}
+.app-footer {
+  height: 10px;
+  background-color: #5c5457;
+}
+.anchor-card {
+  padding: 10px 5px;
+  margin: 2px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #4a5e82;
+}
+.anchor-card.online {
+  background-color: #b8cca6;
+}
+.anchor-card.online .anchor-card-name {
+  color: #4a5e82;
+}
+.anchor-card.online .anchor-card-description {
+  color: #5c5457;
+}
+.anchor-card img {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border: 3px solid white;
+  border-radius: 50px;
+}
+.anchor-card-name {
+  width: 140px;
+  color: #b8cca6;
+}
+.anchor-card-name:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.anchor-card-description {
+  width: 430px;
+  color: #8ea7c2;
+  font-family: 'Droid Serif', serif;
+  font-style: italic;
+}
+.anchor-card-name,
+.anchor-card-description {
+  height: 20px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.checked-switch {
+  transform: translateX(0);
+  color: #5c5457;
+  cursor: pointer;
+}
+.switch {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  text-align: right;
+  font-size: 0.7em;
+}
+.switch > div {
+  position: relative;
+  margin-bottom: 4px;
+  padding: 0px 5px 0px 20px;
+  color: rgba(92, 84, 87, 0);
+  background-color: #e1e1e6;
+  transform: translateX(62px);
+  font-weight: bold;
+  transition: all 1s;
+}
+.switch > div:hover,
+.switch > div.checked {
+  transform: translateX(0);
+  color: #5c5457;
+  cursor: pointer;
+}
+.switch span {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  left: 5px;
+  top: 5px;
+  background-color: #5c5457;
+  border: 1px solid #5c5457;
+  border-radius: 20px;
+}
+.switch-online span {
+  background-color: #b8cca6;
+}
+.switch-offline span {
+  background-color: #8ea7c2;
+}
