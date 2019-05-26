@@ -1,0 +1,92 @@
+:root,
+body {
+  margin: 0;
+  height: 100%;
+  cursor: default;
+}
+body {
+  background-color: #333;
+}
+a {
+  text-decoration-line: none;
+  color: white;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  color: white;
+  font-size: 20px;
+  user-select: none;
+}
+.app-header {
+  font-size: 1.5em;
+  margin-top: 200px;
+  margin-bottom: 20px;
+}
+.app-content-person {
+  border: 1px #15d815 solid;
+  padding: 5px 10px;
+}
+.app-content-person + .app-content-person {
+  margin-top: 10px;
+}
+.app-content-person-top {
+  position: relative;
+  height: 26px;
+  line-height: 26px;
+}
+.app-content-person-top > div {
+  display: inline-block;
+  vertical-align: top;
+}
+.app-content-person-top-name {
+  width: 80px;
+}
+.app-content-person-top-clock {
+  width: 200px;
+  height: 100%;
+  border: 1px solid #15d815;
+  border-left: 4px solid #15d815;
+  box-sizing: border-box;
+  padding: 2px;
+}
+.app-content-person-top-clock-progress {
+  width: 100%;
+  height: 100%;
+  background-color: #15d815;
+  line-height: 0.8em;
+}
+.app-content-person-top-clock-progress span {
+  position: absolute;
+  top: 4px;
+  font-size: 0.8em;
+}
+.app-content-person-config {
+  margin-bottom: 5px;
+}
+.app-content-person-config > div {
+  display: inline-block;
+  vertical-align: top;
+}
+.app-content-person-config-label {
+  width: 80px;
+}
+.app-content-person-config-content span {
+  font-size: 0.8em;
+}
+.app-content-person-config-content-word {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+}
+.app-content-person-config i {
+  cursor: pointer;
+}
+.app-content-person-config i:hover {
+  color: #ff7070;
+}
+.timer {
+  font-size: 0.8em;
+}

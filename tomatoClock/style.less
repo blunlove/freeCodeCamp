@@ -1,0 +1,97 @@
+:root, body {
+  margin: 0;
+  height: 100%;
+  cursor: default;
+}
+body {
+  background-color: #333;
+}
+a {
+  text-decoration-line: none;
+  color: white;
+}
+@strengthColor: #15d815;
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  color: white;
+  font-size: 20px;
+  user-select: none;
+  &-header {
+    font-size: 1.5em;
+    margin-top: 200px;
+    margin-bottom: 20px;
+  }
+  &-content {
+    &-person {
+      border: 1px #15d815 solid;
+      padding: 5px 10px;
+      & + & {
+        margin-top: 10px;
+      }
+      &-top {
+        position: relative;
+        height: 26px;
+        line-height: 26px;
+        & > div {
+          display: inline-block;
+          vertical-align: top;
+        }
+        &-name {
+          width: 80px;
+        }
+        &-clock {
+          width: 200px;
+          height: 100%;
+          border: 1px solid @strengthColor;
+          border-left: 4px solid @strengthColor;
+          box-sizing: border-box;
+          padding: 2px;
+          &-progress {
+            width: 100%;
+            height: 100%;
+            background-color: @strengthColor;
+            line-height: 0.8em;
+            span {
+              position: absolute;
+              top: 4px;
+              font-size: 0.8em;
+            }
+          }
+        }
+      }
+      &-config {
+        margin-bottom: 5px;
+        & > div {
+          display: inline-block;
+          vertical-align: top;
+        }
+        &-label {
+          width: 80px;
+        }
+        &-content {
+          span {
+            font-size: 0.8em;
+          }
+          &-word {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+          }
+        }
+        i {
+          cursor: pointer;
+          &:hover {
+            color: rgb(255, 112, 112);
+          }
+        }
+      }
+    }
+  }
+}
+
+.timer {
+  font-size: 0.8em;
+}
