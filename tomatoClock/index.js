@@ -4,18 +4,22 @@ function main() {
     data() {
       return {
         persons: [
-          { name: 'Jack', sport: 10, rest: 2 },
-          { name: 'Mick', sport: 20, rest: 5 },
-          { name: 'Emma' , sport: 30, rest: 8 },
-          { name: 'Saige', sport: 25, rest: 15 },
+          {
+            name: 'Jack',
+            action: [
+              {time: 2, type: 'session'},
+              {time: 1, type: 'break'},
+            ],
+          },
         ].map(item => {
           return {
             ...item,
-            sportTime: item.sport * 60,
-            restTime: item.rest * 60,
-            allTimes: item.sport * 60,
+            action: item.action.map(config => {
+              config.seconds = config.time * 60;
+              return config;
+            }),
             point: 0,
-            state: 1,
+            state: 0,
             percentage: 100,
             color: '#15d815',
             stop: false
@@ -29,82 +33,72 @@ function main() {
       }, 1000);
     },
     methods: {
-      getColor(item) {
+      getColor(percentage) {
+        percentage = 1 - percentage / 100;
         let max = {
-          r: '15',
-          g: 'd8',
-          b: '15'
+          r: 21,
+          g: 216,
+          b: 21
         };
         let min = {
-          r: 'ff',
-          g: '00',
-          b: '00'
+          r: 255,
+          g: 0,
+          b: 0
         };
-        let r, g, b;
-        if (item.state) {
-          r = (parseInt(max.r, 16) - parseInt(min.r, 16)) * (item.percentage / 100) + parseInt(min.r, 16);
-          g = (parseInt(max.g, 16) - parseInt(min.g, 16)) * (item.percentage / 100) + parseInt(min.g, 16);
-          b = (parseInt(max.b, 16) - parseInt(min.b, 16)) * (item.percentage / 100) + parseInt(min.b, 16);
-        } else {
-          r = (parseInt(min.r, 16) - parseInt(max.r, 16)) * ((100 - item.percentage) / 100) + parseInt(max.r, 16);
-          g = (parseInt(min.g, 16) - parseInt(max.g, 16)) * ((100 - item.percentage) / 100) + parseInt(max.g, 16);
-          b = (parseInt(min.b, 16) - parseInt(max.b, 16)) * ((100 - item.percentage) / 100) + parseInt(max.b, 16);
-        }
+        let r = this.getNumber(max.r, min.r, percentage);
+        let g = this.getNumber(max.g, min.g, percentage);
+        let b = this.getNumber(max.b, min.b, percentage);
         return `rgba(${r}, ${g}, ${b})`;
+      },
+      getNumber(start, end, percentage) {
+        let temp = start - end;
+        return start - temp * percentage;
       },
       update(item) {
         if (item.stop) return;
         item.point++;
-        if (item.state && item.point == item.sportTime) {
-          item.state = !item.state;
+        if (item.point == item.action[item.state].seconds) {
+          item.state = (item.state + 1) % 2;
           item.point = 0;
-          item.allTimes = item.restTime;
         }
-        if (!item.state && item.point == item.restTime) {
-          item.state = !item.state;
-          item.point = 0;
-          item.allTimes = item.sportTime;
-        }
+        let allTimes = item.action[item.state].seconds;
         if (item.state) {
-          item.percentage = (item.allTimes - item.point) / item.allTimes * 100;
+          item.percentage = item.point / allTimes * 100;
         } else {
-          item.percentage = item.point / item.allTimes * 100;
+          item.percentage = (allTimes - item.point) / allTimes * 100;
         }
-        item.color = this.getColor(item);
+        item.color = this.getColor(item.percentage);
       },
       stop(item) {
         item.stop = !item.stop;
         if (item.stop) {
           item.lastState = {
             state: item.state,
-            time: item.state ? item.sport : item.rest,
+            time: item.action[item.state].seconds,
           }
         } else {
-          let time = item.state ? item.sport : item.rest;
+          let time = item.action[item.state].seconds;
           if (time != item.lastState.time) {
             item.point = 0;
-            item.allTimes = time * 60;
+            item.allTimes = time;
           }
         }
       },
-      change(item, type, number) {
+      reduce(item, ket) {
         if (!item.stop) return;
-        if (number < 0) {
-          if (type == 'break') {
-            if (item.rest + number < 1) return;
-            item.rest += number;
-          } else {
-            if (item.sport + number < 1) return;
-            item.sport += number;
-          }
-        } else {
-          if (type == 'break') {
-            item.rest += number;
-          } else {
-            item.sport += number;
-          }
-        }
-        if ((number < 0) && (item.rest == 1 || item.sport == 1)) return;
+        if (ket.time > 1) {
+          ket.time += -1;
+          ket.seconds = ket.time * 60;
+          item.point = 0;
+          this.update(item);
+        };
+      },
+      add(item, ket) {
+        if (!item.stop) return;
+        ket.time += 1;
+        ket.seconds = ket.time * 60;
+        item.point = 0;
+        this.update(item);
       }
     },
     template: `
@@ -139,24 +133,14 @@ function main() {
                 setup
               </div>
               <div class="app-content-person-config-content">
-                <span>
-                  session:
+                <span v-for="ket in item.action">
+                  {{ket.type}}:
                   <span>
-                    <i class="fa fa-plus-circle" @click="change(item, 'session', 1)"></i>
+                    <i class="fa fa-plus-circle" @click="add(item, ket)"></i>
                     <span class="app-content-person-config-content-word">
-                      {{item.sport}}
+                      {{ket.time}}
                     </span>
-                    <i class="fa fa-minus-circle" @click="change(item, 'session', -1)"></i>
-                  </span>
-                </span>
-                <span>
-                  break:
-                  <span>
-                    <i class="fa fa-plus-circle" @click="change(item, 'break', 1)"></i>
-                    <span class="app-content-person-config-content-word">
-                      {{item.rest}}
-                    </span>
-                    <i class="fa fa-minus-circle" @click="change(item, 'break', -1)"></i>
+                    <i class="fa fa-minus-circle" @click="reduce(item, ket)"></i>
                   </span>
                 </span>
               </div>
@@ -170,9 +154,10 @@ function main() {
         props: ['item'],
         computed: {
           clock() {
-            let minutes = '0' + Math.floor((this.item.allTimes - this.item.point) / 60).toString();
+            let temp = this.item.action[this.item.state].seconds;
+            let minutes = '0' + Math.floor((temp - this.item.point) / 60).toString();
             minutes = minutes.slice(minutes.length - 2);
-            let seconds = '0' + ((this.item.allTimes - this.item.point) % 60).toString();
+            let seconds = '0' + ((temp - this.item.point) % 60).toString();
             seconds = seconds.slice(seconds.length - 2);
             return `${minutes} : ${seconds}`;
           }
