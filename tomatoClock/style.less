@@ -21,7 +21,7 @@ a {
   user-select: none;
   &-header {
     font-size: 1.5em;
-    margin-top: 200px;
+    margin-top: 100px;
     margin-bottom: 20px;
   }
   &-content {
@@ -54,12 +54,20 @@ a {
             height: 100%;
             background-color: @strengthColor;
             line-height: 0.8em;
-            span {
+            & > span {
+              display: inline-block;
+              width: 100px;
               margin-left: 4px;
               vertical-align: middle;
               font-size: 0.7em;
-              &.fa-stop {
-                color: red;
+              & > span {
+                &:first-child {
+                  width: 10px;
+                  margin-right: 10px;
+                }
+                &.fa-stop {
+                  color: rgb(175, 15, 15);
+                }
               }
             }
           }

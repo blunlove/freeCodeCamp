@@ -22,7 +22,7 @@ a {
 }
 .app-header {
   font-size: 1.5em;
-  margin-top: 200px;
+  margin-top: 100px;
   margin-bottom: 20px;
 }
 .app-content-person {
@@ -58,13 +58,19 @@ a {
   background-color: #15d815;
   line-height: 0.8em;
 }
-.app-content-person-top-clock-progress span {
+.app-content-person-top-clock-progress > span {
+  display: inline-block;
+  width: 100px;
   margin-left: 4px;
   vertical-align: middle;
   font-size: 0.7em;
 }
-.app-content-person-top-clock-progress span.fa-stop {
-  color: red;
+.app-content-person-top-clock-progress > span > span:first-child {
+  width: 10px;
+  margin-right: 10px;
+}
+.app-content-person-top-clock-progress > span > span.fa-stop {
+  color: #af0f0f;
 }
 .app-content-person-config {
   margin-bottom: 5px;

@@ -144,7 +144,10 @@ function main() {
                     'background-color': item.color
                   }"
                   @click="stop(item)">
-                  <span :class="['fa', item.stop ? 'fa-stop' : 'fa-play']"></span>
+                  <span>
+                    <span :class="['fa', item.stop ? 'fa-stop' : 'fa-play']"></span>
+                    <span>{{item.action[item.state].type}}</span>
+                  </span>
                 </div>
               </div>
               <div class="app-content-person-top-time">
