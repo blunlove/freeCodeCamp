@@ -7,15 +7,36 @@ function main() {
           {
             name: 'Jack',
             action: [
-              {time: 2, type: 'session'},
-              {time: 1, type: 'break'},
+              {minutes: 12, type: 'session'},
+              {minutes: 2, type: 'break'},
+            ],
+          },
+          {
+            name: 'Mike',
+            action: [
+              {minutes: 20, type: 'session'},
+              {minutes: 5, type: 'break'},
+            ],
+          },
+          {
+            name: 'Emma',
+            action: [
+              {minutes: 40, type: 'session'},
+              {minutes: 15, type: 'break'},
+            ],
+          },
+          {
+            name: 'Saige',
+            action: [
+              {minutes: 25, type: 'session'},
+              {minutes: 5, type: 'break'},
             ],
           },
         ].map(item => {
           return {
             ...item,
             action: item.action.map(config => {
-              config.seconds = config.time * 60;
+              config.seconds = config.minutes * 60;
               return config;
             }),
             point: 0,
@@ -74,31 +95,33 @@ function main() {
         if (item.stop) {
           item.lastState = {
             state: item.state,
-            time: item.action[item.state].seconds,
+            seconds: item.action[item.state].seconds,
           }
         } else {
-          let time = item.action[item.state].seconds;
-          if (time != item.lastState.time) {
+          let seconds = item.action[item.state].seconds;
+          if (seconds != item.lastState.seconds) {
             item.point = 0;
-            item.allTimes = time;
+            item.allTimes = seconds;
           }
         }
       },
       reduce(item, ket) {
         if (!item.stop) return;
-        if (ket.time > 1) {
-          ket.time += -1;
-          ket.seconds = ket.time * 60;
+        if (ket.minutes > 1) {
+          ket.minutes += -1;
+          ket.seconds = ket.minutes * 60;
           item.point = 0;
           this.update(item);
         };
       },
       add(item, ket) {
         if (!item.stop) return;
-        ket.time += 1;
-        ket.seconds = ket.time * 60;
-        item.point = 0;
-        this.update(item);
+        if (ket.minutes < 50) {
+          ket.minutes += 1;
+          ket.seconds = ket.minutes * 60;
+          item.point = 0;
+          this.update(item);
+        }
       }
     },
     template: `
@@ -121,7 +144,7 @@ function main() {
                     'background-color': item.color
                   }"
                   @click="stop(item)">
-                  <span>{{item.stop ? '暂停' : '播放'}}</span>
+                  <span :class="['fa', item.stop ? 'fa-stop' : 'fa-play']"></span>
                 </div>
               </div>
               <div class="app-content-person-top-time">
@@ -138,7 +161,7 @@ function main() {
                   <span>
                     <i class="fa fa-plus-circle" @click="add(item, ket)"></i>
                     <span class="app-content-person-config-content-word">
-                      {{ket.time}}
+                      {{ket.minutes}}
                     </span>
                     <i class="fa fa-minus-circle" @click="reduce(item, ket)"></i>
                   </span>

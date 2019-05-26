@@ -59,9 +59,12 @@ a {
   line-height: 0.8em;
 }
 .app-content-person-top-clock-progress span {
-  position: absolute;
-  top: 4px;
-  font-size: 0.8em;
+  margin-left: 4px;
+  vertical-align: middle;
+  font-size: 0.7em;
+}
+.app-content-person-top-clock-progress span.fa-stop {
+  color: red;
 }
 .app-content-person-config {
   margin-bottom: 5px;
