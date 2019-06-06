@@ -50,6 +50,10 @@ a {
 .app-content-board-group-item.lose {
   background: #ff0000;
 }
+.app-content-board-group-item.empty:hover {
+  cursor: pointer;
+  background: #979797;
+}
 .app-content-board-group-item > span {
   display: flex;
   justify-content: center;

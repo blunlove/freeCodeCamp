@@ -65,7 +65,7 @@ function main() {
         }, 1000);
       },
       getChessboard({x, y}) {
-        let array_w = new Array(x).fill(null).map(() => ({class: '', target: ''}));
+        let array_w = new Array(x).fill(null).map(() => ({class: '', target: '', state: ''}));
         return new Array(y).fill(null).map(() => JSON.parse(JSON.stringify(array_w)));
       },
       checkTurn(item) {
@@ -135,10 +135,11 @@ function main() {
         if (winnerGroup) {
           let win = winnerGroup[0].target === this.turn;
           this.gameOver(win ? '你赢了' : '你输了', winnerGroup);
-        }
-        let emptyItem = this.getEmptyItem();
-        if (!emptyItem) {
-          this.gameOver('平局');
+        } else {
+          let emptyItem = this.getEmptyItem();
+          if (!emptyItem) {
+            this.gameOver('平局');
+          }
         }
       }
     },
@@ -150,7 +151,7 @@ function main() {
         <div class="app-content">
           <div class="app-content-board">
             <div class="app-content-board-group" v-for="group in chessboard">
-              <div :class="['app-content-board-group-item', item.state]" v-for="item in group" @click="checkTurn(item)">
+              <div :class="['app-content-board-group-item', item.state, {'empty': !item.target}]" v-for="item in group" @click="checkTurn(item)">
                 <span>
                   <i :class="['fa', item.class]"></i>
                 </span>
