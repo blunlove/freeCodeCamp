@@ -25,3 +25,38 @@ a {
   margin-top: 100px;
   margin-bottom: 20px;
 }
+.app-content {
+  line-height: 0;
+}
+.app-content-board-group + .app-content-board-group {
+  margin-top: 15px;
+}
+.app-content-board-group-item {
+  display: inline-block;
+  vertical-align: top;
+  width: 100px;
+  height: 100px;
+  background: white;
+  color: black;
+  font-size: 3em;
+}
+.app-content-board-group-item.win,
+.app-content-board-group-item.lose {
+  color: white;
+}
+.app-content-board-group-item.win {
+  background: #3cf53c;
+}
+.app-content-board-group-item.lose {
+  background: #ff0000;
+}
+.app-content-board-group-item > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.app-content-board-group-item + .app-content-board-group-item {
+  margin-left: 15px;
+}
