@@ -10,7 +10,8 @@ a {
   text-decoration-line: none;
   color: white;
 }
-@strengthColor: #15d815;
+@buttonSize: 140px;
+@contentSize: 300px;
 .app {
   display: flex;
   flex-direction: column;
@@ -24,5 +25,73 @@ a {
     margin-top: 100px;
     margin-bottom: 20px;
   }
-  &-content {}
+  &-content {
+    &-button {
+      display: flex;
+      justify-content: space-between;
+      align-content: space-between;
+      flex-wrap: wrap;
+      width: @contentSize;
+      height: @contentSize;
+      line-height: 0;
+      span {
+        display: inline-block;
+        width: @buttonSize;
+        height: @buttonSize;
+        &.canCheck {
+          cursor: pointer;
+        }
+        &.bright {
+          filter: brightness(170%);
+        }
+      }
+    }
+    &-console {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      & > div {
+        display: inline-block;
+        vertical-align: top;
+        text-align: center;
+        font-size: 0.8em;
+      }
+      &-count {
+        &-screen {
+          width: 60px;
+          height: 40px;
+          border: 4px solid black;
+          background: #32050c;
+          box-sizing: border-box;
+        }
+      }
+      &-strict {
+        position: relative;
+        span {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: -14px;
+          margin: auto;
+          width: 12px;
+          height: 12px;
+          padding: 2px;
+          line-height: 0;
+          border-radius: 10px;
+          background: black;
+          box-sizing: border-box;
+          i {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            &.strict {
+              background: red;
+            }
+          }
+        }
+      }
+    }
+  }
 }
